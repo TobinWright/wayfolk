@@ -1,0 +1,122 @@
+/* The legal pages (terms, privacy, refunds): plain, readable text in the game's colours */
+
+:root {
+    --bg: #10141f;
+    --panel: #171d2b;
+    --text: #ebede9;
+    --muted: #a8b5b2;
+    --rule: #394a50;
+    --accent: #a8ca58;
+    --warn: #e3a54a;
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+}
+
+nav a[aria-current="page"] {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a {
+    color: var(--accent);
+}
+
+h1 {
+    margin: 28px 0 4px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+h2 {
+    margin: 36px 0 8px;
+    font-size: 21px;
+}
+
+h3 {
+    margin: 24px 0 4px;
+    font-size: 17px;
+}
+
+.updated {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.summary {
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: var(--panel);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+}
+
+.summary p:first-child, .summary ul:first-child {
+    margin-top: 0;
+}
+
+.summary p:last-child, .summary ul:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+code {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 15px;
+}

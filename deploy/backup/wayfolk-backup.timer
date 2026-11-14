@@ -1,0 +1,11 @@
+# Daily at 04:30 (the box's time), caught up after the box was off.
+[Unit]
+Description=Wayfolk database backup, daily
+
+[Timer]
+OnCalendar=*-*-* 04:30:00
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

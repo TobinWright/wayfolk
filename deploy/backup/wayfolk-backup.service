@@ -1,0 +1,14 @@
+# One backup (wayfolk-backup.sh), run by wayfolk-backup.timer. Copy both to
+# /etc/systemd/system/, the script to /usr/local/bin/ (chmod 755), then:
+#   systemctl daemon-reload && systemctl enable --now wayfolk-backup.timer
+#   systemctl start wayfolk-backup     (one now, to try it)
+#   journalctl -u wayfolk-backup       (how it went)
+[Unit]
+Description=Wayfolk database backup
+After=mysql.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/wayfolk-backup.sh
+Nice=10
+IOSchedulingClass=idle

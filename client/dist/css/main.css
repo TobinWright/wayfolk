@@ -1,0 +1,416 @@
+/* === Main === */
+
+:root {
+    --color-brown-light: #ae8e5d;
+    --color-brown-dark: #8a7250;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow: hidden;
+}
+
+/* the page till the game's drawn (index.html; Engine.ts): loading, or why it can't start */
+.boot {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+    background-color: #172038;
+    color: #ebede9;
+    font-family: "PixelFont", monospace;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.disable-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* === Module: Base === */
+
+.base-window-bar {
+    font-size: 14px;
+    line-height: 20px;
+    padding-left: 5px;
+    border: 1px solid #1D1C1A;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    flex: 0 0 20px;
+    background-color: var(--color-brown-dark);
+}
+
+.base-window-bar-button {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background-color: var(--color-brown-dark);
+    background-image: url('../assets/images/shared/icons/cross.png');
+}
+
+.base-window-body {
+    border: 1px solid black;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    background-color: var(--color-brown-light);
+}
+
+/* === HTML over the canvas (shared/dom/Dom.ts): the sign-in forms === */
+/* the game's own pixel font (tools/build-webfont.js): at 20px a font pixel is 2 screen px */
+
+@font-face {
+    font-family: "PixelFont";
+    src: url("../assets/fonts/PixelFont.otf") format("opentype");
+    font-display: block;
+}
+
+.dom-layer {
+    --ap-black: #090a14;
+    --ap-ink: #10141f;
+    --ap-slate: #202e37;
+    --ap-iron: #394a50;
+    --ap-steel: #577277;
+    --ap-stone: #819796;
+    --ap-ash: #a8b5b2;
+    --ap-white: #ebede9;
+    --ap-leaf: #468232;
+    --ap-grass: #75a743;
+    --ap-lime: #a8ca58;
+    --ap-flame: #cf573c;
+
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    overflow-y: auto;
+    pointer-events: none;
+    font-family: "PixelFont", monospace;
+    font-size: 20px;
+    line-height: 22px;
+    color: var(--ap-white);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: never;
+    user-select: text;
+}
+
+.dom-layer.is-modal {
+    align-items: center;
+    pointer-events: auto;
+    background: rgba(9, 10, 20, 0.6);
+}
+
+/* the connection's lost (network/Reconnect): over everything, the title screen and Save account too */
+.dom-layer.connection-layer {
+    z-index: 30;
+}
+
+.dom-layer [hidden] {
+    display: none !important;
+}
+
+.dom-panel {
+    pointer-events: auto;
+    width: min(380px, 100%);
+    margin-bottom: 16px;
+    padding: 4px 6px;
+    border: 16px solid transparent;
+    border-image: var(--panel-frame, url("../assets/system/panel-frame.png")) 8 fill / 16px stretch;
+    image-rendering: pixelated;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.dom-layer.is-modal .dom-panel {
+    background: var(--ap-black);
+    background-clip: padding-box;
+}
+
+.dom-panel:empty {
+    display: none;
+}
+
+.dom-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+}
+
+.dom-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--ap-lime);
+}
+
+.dom-text, .dom-hint, .dom-info, .dom-error, .dom-or {
+    margin: 0;
+}
+
+.dom-hint, .dom-or {
+    color: var(--ap-stone);
+}
+
+.dom-or {
+    text-align: center;
+}
+
+.dom-info {
+    color: var(--ap-lime);
+}
+
+.dom-error {
+    color: var(--ap-flame);
+}
+
+.is-center {
+    text-align: center;
+    justify-content: center;
+}
+
+/* the big choices on the title screen: just text, lit when pointed at */
+.dom-choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.dom-choice {
+    max-width: 100%;
+    padding: 4px 8px;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 20px;
+    line-height: 1.1;
+    color: var(--ap-white);
+    overflow-wrap: break-word;
+    cursor: pointer;
+}
+
+.dom-choice:hover, .dom-choice:focus-visible {
+    color: var(--ap-lime);
+    outline: none;
+}
+
+.dom-google {
+    display: flex;
+    justify-content: center;
+    min-height: 44px;
+}
+
+.dom-google:empty {
+    display: none;
+}
+
+/* fields: like Settings' name field */
+.dom-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dom-field > span {
+    color: var(--ap-stone);
+    text-transform: uppercase;
+}
+
+.dom-input {
+    width: 100%;
+    height: 36px;
+    padding: 2px 8px 0;
+    border: 2px solid var(--ap-black);
+    border-radius: 0;
+    background: var(--ap-ink);
+    font: inherit;
+    color: var(--ap-white);
+    caret-color: var(--ap-white);
+    outline: none;
+}
+
+.dom-input:focus {
+    background: var(--ap-slate);
+    box-shadow: 0 0 0 2px var(--ap-steel);
+}
+
+/* (the browser's autofill colours, kept to the game's) */
+.dom-input:-webkit-autofill {
+    -webkit-text-fill-color: var(--ap-white);
+    -webkit-box-shadow: 0 0 0 40px var(--ap-slate) inset;
+    transition: background-color 9999s;
+}
+
+.dom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.dom-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.dom-check input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    border: 2px solid var(--ap-black);
+    background: var(--ap-ink);
+    cursor: pointer;
+}
+
+.dom-check input:checked {
+    background: var(--ap-ink) linear-gradient(var(--ap-lime), var(--ap-lime)) center / 8px 8px no-repeat;
+}
+
+.dom-check input:focus-visible {
+    box-shadow: 0 0 0 2px var(--ap-steel);
+    outline: none;
+}
+
+.dom-check:hover span {
+    color: var(--ap-lime);
+}
+
+/* buttons: like Settings' Save */
+.dom-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.dom-button {
+    min-width: 96px;
+    height: 32px;
+    padding: 2px 14px 0;
+    border: 2px solid var(--ap-black);
+    border-radius: 0;
+    background: var(--ap-iron);
+    font: inherit;
+    color: var(--ap-white);
+    cursor: pointer;
+}
+
+.dom-button:hover, .dom-button:focus-visible {
+    background: var(--ap-steel);
+    outline: none;
+}
+
+.dom-button.is-primary {
+    background: var(--ap-leaf);
+}
+
+.dom-button.is-primary:hover, .dom-button.is-primary:focus-visible {
+    background: var(--ap-grass);
+}
+
+/* a button that can't be undone (settings/DeleteAccount) */
+.dom-button.is-danger {
+    background: #a53030;
+}
+
+.dom-button.is-danger:hover, .dom-button.is-danger:focus-visible {
+    background: var(--ap-flame);
+}
+
+/* the game's version in the title screen's bottom left (components/title/Title.ts) */
+.title-version {
+    position: fixed;
+    left: 10px;
+    bottom: 6px;
+    margin: 0;
+    color: var(--ap-stone);
+    font-family: "PixelFont", monospace;
+    font-size: 16px;
+    z-index: 31;
+    pointer-events: none;
+}
+
+/* the legal pages' links (shared/Legal.ts), under the title screen's buttons */
+.dom-legal {
+    margin: 0;
+    font-size: 16px;
+}
+
+.dom-legal .dom-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.dom-button:disabled {
+    background: var(--ap-iron);
+    color: var(--ap-stone);
+    cursor: default;
+}
+
+.dom-link {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: var(--ap-lime);
+    cursor: pointer;
+}
+
+.dom-link:hover, .dom-link:focus-visible {
+    color: var(--ap-white);
+    outline: none;
+}
+
+/* sign in / new account */
+.dom-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--ap-iron);
+}
+
+.dom-tab {
+    flex: 1;
+    height: 32px;
+    padding: 2px 0 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: var(--ap-stone);
+    cursor: pointer;
+}
+
+.dom-tab:hover {
+    color: var(--ap-white);
+}
+
+.dom-tab.is-current {
+    color: var(--ap-lime);
+    box-shadow: inset 0 -2px 0 var(--ap-lime);
+}

@@ -1,0 +1,92 @@
+[
+    { "id": 999999999, "name": "action-list", "actions": [
+        { "id": 0, "name": "mining" },
+        { "id": 1, "name": "woodchopping" },
+        { "id": 2, "name": "recruit" },
+        { "id": 3, "name": "travel" },
+        { "id": 4, "name": "academy" }
+    ]},
+    { "id": 1, "name": "Rockbarrow", "actions": [
+        { "id": 2, "data": "level:1-5" },
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 2, "name": "Mystwood", "actions": [
+        { "id": 1, "data": "level:1-5" },
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 3, "name": "Cracked Cavern", "actions": [
+        { "id": 0, "data": "level:1-5" },
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 4, "name": "Middlewood", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 5, "name": "The Old Wood", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 6, "name": "Woodcutters Camp", "actions": [
+        { "id": 4, "data": "type:woodchopping" },
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 7, "name": "Etophsis Tower", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 8, "name": "Luminmoor", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 9, "name": "Dragontooth Mines", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 10, "name": "Dawnhill", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 11, "name": "Mount Storm", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 12, "name": "Tower of Light", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 13, "name": "Fort Martale", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 14, "name": "Porto", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 15, "name": "Porto Pier", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 16, "name": "The Dark Forest", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 17, "name": "Blackened Altar", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 18, "name": "Ebondun Bridge", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 19, "name": "Deep Wilds", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 20, "name": "Emberlet Mines", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 21, "name": "Ancient Forge of Flame", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 22, "name": "Darkpeak", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 23, "name": "Royal Grove", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 24, "name": "Quiet Wood", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 25, "name": "Faded Thicket", "actions": [
+        { "id": 3, "data": "" }
+    ]},
+    { "id": 26, "name": "Jagged Peaks", "actions": [
+        { "id": 3, "data": "" }
+    ]}
+
+]

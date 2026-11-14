@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#10141f">
+    <title>Wayfolk Stats</title>
+    <link rel="stylesheet" href="stats.css">
+</head>
+<body>
+    <!-- The Analytics on a phone (server/src/managers/analytics/StatsPage.ts):
+         drawn by stats.js from .../stats/data -->
+    <header class="top">
+        <div class="bar">
+            <h1>Wayfolk Stats</h1>
+            <span id="age" class="age"></span>
+        </div>
+        <div class="bar controls">
+            <label class="switch"><input type="checkbox" id="staff"> Count staff</label>
+            <button id="refresh" type="button">Refresh</button>
+        </div>
+        <nav id="nav" class="nav"></nav>
+    </header>
+
+    <form id="keyform" class="keyform" hidden>
+        <p>Enter the stats key (<code>STATS_KEY</code> in the server's <code>.env</code>). It's remembered on this device.</p>
+        <input id="key" type="password" autocomplete="current-password" placeholder="Stats key" required>
+        <button type="submit">Open</button>
+        <p id="keyerror" class="error" hidden></p>
+    </form>
+
+    <main id="main"></main>
+
+    <div id="readout" class="readout" hidden></div>
+    <script src="stats.js"></script>
+</body>
+</html>

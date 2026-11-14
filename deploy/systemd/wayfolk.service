@@ -1,0 +1,30 @@
+# The game server under systemd (README.md, Running it live, Keeping it running). Copy to
+# /etc/systemd/system/wayfolk.service, then:
+#   systemctl daemon-reload && systemctl enable --now wayfolk
+#   journalctl -u wayfolk -f        (its log)
+# It's restarted whenever it exits (after a crash it saves everyone, then exits
+# 1). Stopping sends SIGTERM, which saves everyone first (Engine.shutdown,
+# 20s at most).
+
+[Unit]
+Description=Wayfolk game server
+After=network-online.target mysql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=wayfolk
+WorkingDirectory=/srv/wayfolk/server
+ExecStart=/usr/bin/node build/server/src/app.js
+Restart=always
+RestartSec=2
+KillSignal=SIGTERM
+TimeoutStopSec=30
+Environment=NODE_ENV=production
+# (a little hardening: it only needs its own folder)
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

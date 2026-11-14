@@ -1,0 +1,26 @@
+{
+    "hitboxes": [
+        {
+            "name": "Woodrow",
+            "type": "settlement",
+            "shape": "rect",
+            "coords": [
+                [1700, 1913],
+                [1763, 1958]
+            ],
+            "banner": [1735, 1900]
+        },
+
+        {
+            "name": "Yarlow",
+            "type": "settlement",
+            "shape": "rect",
+            "coords": [
+                [2385, 2226],
+                [2447, 2276]
+            ],
+            "banner": [2423, 2220]
+        }
+
+    ]
+}

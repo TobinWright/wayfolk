@@ -1,0 +1,8 @@
+{
+  // the tests (npm test): test/ and the shared rules they cover, built to build-test/
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./build-test"
+  },
+  "include": ["test", "../shared"]
+}
